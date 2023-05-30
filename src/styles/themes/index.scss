@@ -1,0 +1,10 @@
+[data-theme='lightBreak'],
+[data-theme='lightFocus'],
+[data-theme='lightPause'],
+[data-theme='darkBreak'],
+[data-theme='darkFocus'],
+[data-theme='darkPause'] {
+  --theme-text-color: var(--text-color);
+  --theme-background-color: var(--background-color);
+  --background-border-color: var(--background-border-color);
+}

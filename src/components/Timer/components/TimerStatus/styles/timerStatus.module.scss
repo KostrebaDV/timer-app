@@ -1,0 +1,14 @@
+.timerStatus {
+  display: flex;
+  align-items: center;
+  margin: 0 auto 32px;
+  border-radius: 9999px;
+  border: 2px solid var(--background-border-color);
+  padding: 6px 14px;
+  width: fit-content;
+  box-sizing: content-box;
+
+  svg {
+    margin-right: 8px;
+  }
+}

@@ -1,0 +1,22 @@
+:root {
+  font-family: 'Roboto Flex', sans-serif;
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+}
+
+#theme-root-id {
+  color: var(--theme-text-color);
+  background-color: var(--theme-background-color);
+  transition: all 500ms;
+  height: 100vh;
+  position: relative;
+
+  svg {
+    fill: var(--theme-text-color);
+  }
+}

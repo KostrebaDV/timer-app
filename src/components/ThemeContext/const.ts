@@ -1,0 +1,1 @@
+export const THEME_ROOT_ID = 'theme-root-id'
