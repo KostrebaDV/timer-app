@@ -1,10 +1,16 @@
-import { ThemeProvider } from './components/ThemeContext/ThemeContext';
 import { Timer } from './components/Timer';
+import { ThemeProvider } from './components/ThemeProvider';
+import { TimerConfigProvider } from './components/TimerConfigProvider';
+import { TimerNavigationProvider } from './components/TimerNavigationProvider';
 
 function App() {
   return (
     <ThemeProvider>
-      <Timer/>
+      <TimerConfigProvider>
+        <TimerNavigationProvider>
+          <Timer/>
+        </TimerNavigationProvider>
+      </TimerConfigProvider>
     </ThemeProvider>
   )
 }
