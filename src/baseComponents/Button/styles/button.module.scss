@@ -1,6 +1,7 @@
 .button {
   cursor: pointer;
   border: none;
+  transition: all 300ms;
 }
 
 .button_big {
@@ -9,6 +10,10 @@
   width: 128px;
   height: 96px;
   background-color: var(--background-button-big-color);
+
+  &:hover {
+    background-color: var(--background-button-big-color-hover);
+  }
 }
 
 .button_small {
@@ -17,4 +22,8 @@
   width: 80px;
   height: 80px;
   background-color: var(--background-button-small-color);
+
+  &:hover {
+    background-color: var(--background-button-small-color-hover);
+  }
 }

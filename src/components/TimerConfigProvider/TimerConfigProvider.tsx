@@ -1,8 +1,8 @@
 import { createContext, FC, PropsWithChildren, useMemo } from 'react';
-import { TimerConfigContextValue } from './types';
+import { TimerConfigContextProps } from './types';
 import { useTimerBreakTime, useTimerFocusTime, useTimerPauseTime } from './hooks';
 
-export const TimerConfigContext = createContext<TimerConfigContextValue>({
+export const TimerConfigContext = createContext<TimerConfigContextProps>({
   focusTime: 0,
   pauseTime: 0,
   breakTime: 0,

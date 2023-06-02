@@ -1,8 +1,8 @@
 import { createContext, FC, PropsWithChildren } from 'react';
 import { useTimerNext, useTimerStart } from './hooks';
-import { TimerNavigationContextValue, TimerState } from './types';
+import { TimerNavigationContextProps, TimerState } from './types';
 
-export const TimerNavigationContext = createContext<TimerNavigationContextValue>({
+export const TimerNavigationContext = createContext<TimerNavigationContextProps>({
   handleTimerStart: () => null,
   handleTimerNextClick: () => null,
   timerStart: false,
@@ -14,8 +14,8 @@ export const TimerNavigationProvider: FC<PropsWithChildren> = (
     children
   }
 ) => {
-  const {handleTimerStart, timerStart} = useTimerStart();
-  const {handleTimerNextClick, timerStepState} = useTimerNext();
+  const {handleTimerStart, handleTimerStop, timerStart} = useTimerStart();
+  const {handleTimerNextClick, timerStepState} = useTimerNext(handleTimerStop);
 
   return (
     <TimerNavigationContext.Provider value={{handleTimerStart, timerStart, handleTimerNextClick, timerStepState }}>

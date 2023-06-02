@@ -1,4 +1,4 @@
-export type TimerConfigContextValue = {
+export type TimerConfigContextProps = {
   focusTime: number;
   pauseTime: number;
   breakTime: number;

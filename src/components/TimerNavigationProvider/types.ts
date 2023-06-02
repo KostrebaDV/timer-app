@@ -5,7 +5,7 @@ export enum TimerState {
   break
 }
 
-export type TimerNavigationContextValue = {
+export type TimerNavigationContextProps = {
   handleTimerStart:  () => void;
   handleTimerNextClick: () => void;
   timerStart: boolean;

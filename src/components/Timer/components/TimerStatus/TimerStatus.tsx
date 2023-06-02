@@ -8,7 +8,6 @@ import { TimerState } from '../../../TimerNavigationProvider/types';
 
 export const TimerStatus = () => {
   const { timerStepState } = useContext(TimerNavigationContext);
-console.log(timerStepState);
 
   return (
     <div className={styles.timerStatus}>
