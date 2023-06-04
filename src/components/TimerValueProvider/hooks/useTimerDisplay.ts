@@ -3,10 +3,13 @@ import { TimerConfigContext } from '../../TimerConfigProvider';
 import { TimerNavigationContext } from '../../TimerNavigationProvider';
 import { TimerState } from '../../TimerNavigationProvider/types';
 import { usePrevious } from '../../../baseHooks';
+import { TimerNotificationContext } from '../../TimerNotificationProvider';
 
 export const useTimerDisplay = () => {
   const {focusTime, pauseTime, breakTime} = useContext(TimerConfigContext);
-  const {timerStepState, timerStart} = useContext(TimerNavigationContext);
+  const {timerStepState, timerStart, handleTimerStop} = useContext(TimerNavigationContext);
+  const { onTimerDone } = useContext(TimerNotificationContext);
+
   const [time, setTime] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState({
     min: '',
@@ -86,8 +89,9 @@ export const useTimerDisplay = () => {
       secRef.current = seconds;
 
       if (minutes === 0 && seconds === 0) {
-        clearInterval(window['timerIntervalId']);
+        handleTimerStop();
 
+        onTimerDone();
         minRef.current = null;
         secRef.current = null;
       }
@@ -99,7 +103,7 @@ export const useTimerDisplay = () => {
     }, 1000);
 
     return () => clearInterval(window['timerIntervalId']);
-  }, [time, timerStart])
+  }, [onTimerDone, time, timerStart, handleTimerStop])
 
   return {currentTime}
 }

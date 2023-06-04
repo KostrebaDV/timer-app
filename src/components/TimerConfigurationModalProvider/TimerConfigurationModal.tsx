@@ -10,9 +10,11 @@ import { ThemeContext } from '../ThemeProvider';
 import { NumberInput } from '../../baseComponents/NumberInput';
 import { TimerConfigContext } from '../TimerConfigProvider';
 import { useFormContext } from 'react-hook-form';
+import { TimerNotificationContext } from '../TimerNotificationProvider';
 
 export const TimerConfigurationModal = ({isOpen, handelModalClose}) => {
   const {handleThemeMode} = useContext(ThemeContext);
+  const { toggleNotification } = useContext(TimerNotificationContext);
   const {focusTime, pauseTime, breakTime, setBreakTime, setFocusTime, setPauseTime} = useContext(TimerConfigContext);
 
   const {
@@ -62,7 +64,7 @@ export const TimerConfigurationModal = ({isOpen, handelModalClose}) => {
         </TimerConfigurationModalRow>
         <TimerConfigurationModalRow>
           <Typography>{lexicon.notifications}</Typography>
-          <Toggle handleClick={() => null}/>
+          <Toggle handleClick={toggleNotification}/>
         </TimerConfigurationModalRow>
       </form>
     </ModalComponent>

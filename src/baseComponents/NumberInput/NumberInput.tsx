@@ -7,7 +7,7 @@ export const NumberInput = (
   {
     fieldName,
     maxValue = 99,
-    miValue = 1,
+    miValue = .1,
   }
 ) => {
 
@@ -23,7 +23,6 @@ export const NumberInput = (
   }, [onChange])
 
   const handleOnBlur = useCallback((e) => {
-    console.log(e.target.value);
     if (Number(e.target.value) > maxValue) {
       setValue(name, maxValue)
     }

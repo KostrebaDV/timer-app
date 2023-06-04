@@ -6,21 +6,24 @@ import {
   TimerConfigurationModalProvider
 } from './components/TimerConfigurationModalProvider/TimerConfigurationModalProvider';
 import { useForm, FormProvider } from "react-hook-form";
+import { TimerNotificationProvider } from './components/TimerNotificationProvider';
 
 function App() {
   const methods = useForm();
 
   return (
     <ThemeProvider>
-      <TimerNavigationProvider>
-        <TimerConfigProvider>
-          <FormProvider {...methods} >
-            <TimerConfigurationModalProvider>
-              <Timer/>
-            </TimerConfigurationModalProvider>
-          </FormProvider>
-        </TimerConfigProvider>
-      </TimerNavigationProvider>
+      <TimerNotificationProvider>
+        <TimerNavigationProvider>
+          <TimerConfigProvider>
+            <FormProvider {...methods} >
+              <TimerConfigurationModalProvider>
+                <Timer/>
+              </TimerConfigurationModalProvider>
+            </FormProvider>
+          </TimerConfigProvider>
+        </TimerNavigationProvider>
+      </TimerNotificationProvider>
     </ThemeProvider>
   )
 }

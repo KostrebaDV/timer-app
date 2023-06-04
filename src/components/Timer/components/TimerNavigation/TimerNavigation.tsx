@@ -11,16 +11,19 @@ import { nextStepMapper } from '../../../TimerNavigationProvider/const';
 import {
   TimerConfigurationModalContext
 } from '../../../TimerConfigurationModalProvider/TimerConfigurationModalProvider';
+import { TimerNotificationContext } from '../../../TimerNotificationProvider';
 
 export const TimerNavigation = () => {
   const { handleTimerStart, timerStart, handleTimerNextClick, timerStepState } = useContext(TimerNavigationContext);
   const { handleThemeState } = useContext(ThemeContext);
   const { handelModalOpen } = useContext(TimerConfigurationModalContext);
+  const { onStateChange } = useContext(TimerNotificationContext);
 
   const handleNextButtonClick = useCallback(() => {
     handleThemeState(nextStepThemeState[nextStepMapper[timerStepState]]);
     handleTimerNextClick();
-  }, [timerStepState, handleThemeState, handleTimerNextClick]);
+    onStateChange();
+  }, [timerStepState, handleThemeState, handleTimerNextClick, onStateChange]);
 
   return (
     <div className={styles.timerNavigation}>
