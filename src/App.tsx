@@ -5,17 +5,22 @@ import { TimerNavigationProvider } from './components/TimerNavigationProvider';
 import {
   TimerConfigurationModalProvider
 } from './components/TimerConfigurationModalProvider/TimerConfigurationModalProvider';
+import { useForm, FormProvider } from "react-hook-form";
 
 function App() {
+  const methods = useForm();
+
   return (
     <ThemeProvider>
-      <TimerConfigProvider>
-        <TimerConfigurationModalProvider>
-          <TimerNavigationProvider>
-            <Timer/>
-          </TimerNavigationProvider>
-        </TimerConfigurationModalProvider>
-      </TimerConfigProvider>
+      <TimerNavigationProvider>
+        <TimerConfigProvider>
+          <FormProvider {...methods} >
+            <TimerConfigurationModalProvider>
+              <Timer/>
+            </TimerConfigurationModalProvider>
+          </FormProvider>
+        </TimerConfigProvider>
+      </TimerNavigationProvider>
     </ThemeProvider>
   )
 }

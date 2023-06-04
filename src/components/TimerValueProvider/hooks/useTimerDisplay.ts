@@ -1,12 +1,13 @@
-import { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { TimerConfigContext } from '../../TimerConfigProvider';
 import { TimerNavigationContext } from '../../TimerNavigationProvider';
 import { TimerState } from '../../TimerNavigationProvider/types';
 import { usePrevious } from '../../../baseHooks';
 
 export const useTimerDisplay = () => {
-  const { focusTime, pauseTime, breakTime } = useContext(TimerConfigContext);
-  const { timerStepState, timerStart } = useContext(TimerNavigationContext);
+  const {focusTime, pauseTime, breakTime} = useContext(TimerConfigContext);
+  const {timerStepState, timerStart} = useContext(TimerNavigationContext);
+  const [time, setTime] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState({
     min: '',
     sec: ''
@@ -16,30 +17,40 @@ export const useTimerDisplay = () => {
   const minRef = useRef<null | number>(null);
   const secRef = useRef<null | number>(null);
 
-  const time = useMemo(() => {
+  useEffect(() => {
+    let time = 0;
+
     switch (timerStepState) {
       case TimerState.focusPause:
-        return focusTime;
+        time = focusTime;
+        break;
       case TimerState.pause:
-        return pauseTime;
+        time = pauseTime;
+        break;
       case TimerState.focusBreak:
-        return focusTime;
+        time = focusTime;
+        break;
       case TimerState.break:
-        return breakTime;
+        time = breakTime;
     }
+
+    minRef.current = null;
+    secRef.current = null;
+
+    setTime(time);
   }, [breakTime, focusTime, pauseTime, timerStepState])
-  
+
   useEffect(() => {
     if (prevTimerStepState !== timerStepState) {
       minRef.current = null;
       secRef.current = null;
     }
   }, [prevTimerStepState, timerStepState])
-  
+
   useEffect(() => {
     const minutesInt: number = Math.floor(time);
     const seconds: number = Math.floor((time % 1) * 60);
-    
+
     setCurrentTime({
       min: minutesInt.toString().padStart(2, '0'),
       sec: seconds.toString().padStart(2, '0'),
@@ -51,7 +62,7 @@ export const useTimerDisplay = () => {
     let seconds: number | null;
 
     if (minRef.current === null) {
-        minutes = Math.floor(time);
+      minutes = Math.floor(time);
     } else {
       minutes = minRef.current;
     }
@@ -62,7 +73,7 @@ export const useTimerDisplay = () => {
       seconds = secRef.current;
     }
 
-      window['timerIntervalId'] = setInterval(() => {
+    window['timerIntervalId'] = setInterval(() => {
       if (!timerStart) return;
 
       seconds--;
@@ -90,5 +101,5 @@ export const useTimerDisplay = () => {
     return () => clearInterval(window['timerIntervalId']);
   }, [time, timerStart])
 
-  return { currentTime }
+  return {currentTime}
 }

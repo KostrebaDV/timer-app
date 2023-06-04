@@ -5,6 +5,7 @@ import { TimerNavigationContextProps, TimerState } from './types';
 export const TimerNavigationContext = createContext<TimerNavigationContextProps>({
   handleTimerStart: () => null,
   handleTimerNextClick: () => null,
+  handleTimerStop: () => null,
   timerStart: false,
   timerStepState: TimerState.focusPause,
 });
@@ -18,7 +19,7 @@ export const TimerNavigationProvider: FC<PropsWithChildren> = (
   const {handleTimerNextClick, timerStepState} = useTimerNext(handleTimerStop);
 
   return (
-    <TimerNavigationContext.Provider value={{handleTimerStart, timerStart, handleTimerNextClick, timerStepState }}>
+    <TimerNavigationContext.Provider value={{handleTimerStart, timerStart, handleTimerNextClick, timerStepState, handleTimerStop }}>
         {children}
     </TimerNavigationContext.Provider>
   );

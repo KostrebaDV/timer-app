@@ -1,0 +1,20 @@
+.configurationModal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0  0 16px 0;
+}
+
+.configurationModal__CloseButton {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.configurationModal__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+}

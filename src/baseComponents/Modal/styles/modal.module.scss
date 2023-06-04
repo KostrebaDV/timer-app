@@ -9,10 +9,11 @@
   transform: translateY(-50%);
   z-index: 100;
   padding: 24px;
-  width: 450px;
+  max-width: 450px;
   background-color: var(--theme-background-color);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.039), 0 5.5px 16px rgba(0, 0, 0, 0.19);
+  box-shadow: var(--box-shadow-modal);
   border-radius: 24px;
+  color: var(--text-color);
 }
 
 .modal_open {

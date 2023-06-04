@@ -1,6 +1,6 @@
 import { createContext, FC, PropsWithChildren, useCallback, useState } from 'react';
 import { ThemeContextValue, ThemeState, ThemeMode } from './types';
-import { THEME_ROOT_ID } from './const';
+import { nextStepThemeMode, THEME_ROOT_ID } from './const';
 
 export const ThemeContext = createContext<ThemeContextValue>({
   handleThemeState: () => null,
@@ -24,11 +24,11 @@ export const ThemeProvider: FC<PropsWithChildren> = (
     setCurrentTheme(`${currentThemeMode}${themeState}`);
   }, [currentThemeMode])
 
-  const handleThemeMode = useCallback((themeMode) => {
-    setCurrentThemeMode(themeMode);
+  const handleThemeMode = useCallback(() => {
+    setCurrentThemeMode(nextStepThemeMode[currentThemeMode]);
 
-    setCurrentTheme(`${themeMode}${currentThemeState}`);
-  }, [currentThemeState])
+    setCurrentTheme(`${nextStepThemeMode[currentThemeMode]}${currentThemeState}`);
+  }, [currentThemeMode, currentThemeState])
   
   return (
     <ThemeContext.Provider value={{handleThemeState, handleThemeMode, currentThemeState, currentThemeMode}}>
